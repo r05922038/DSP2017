@@ -1,0 +1,155 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include "Ngram.h"
+using namespace std;
+
+Vocab voc;
+Ngram lm( voc, 2 );
+
+
+struct Big5 { 
+    double prob;
+    int preId;
+    char big5[3]; 
+};
+struct zhuyinNode{
+    vector<Big5> big5List;
+};
+
+struct strNode{
+    int id;
+    vector<Big5> big5List;
+};
+double _Prob( char *curword, char *preword ){
+    VocabIndex wid1 = voc.getIndex(curword);
+    if(wid1 == Vocab_None)  //OOV
+        wid1 = voc.getIndex(Vocab_Unknown);
+
+    if (preword==NULL){
+        VocabIndex context[] = {Vocab_None};
+        return lm.wordProb( wid1, context );
+    }
+    else{
+        VocabIndex wid2 = voc.getIndex(preword);
+        if(wid2 == Vocab_None)  //OOV
+            wid2 = voc.getIndex(Vocab_Unknown);
+        VocabIndex context[] = {wid2,Vocab_None};
+        return lm.wordProb( wid1, context );
+    }
+}
+Big5 maxProb(vector<Big5> preList,Big5 curBig5){
+    Big5 big5tmp=curBig5;
+    for (int i=0;i<preList.size();i++){
+        double probtmp=_Prob(preList[i].big5,curBig5.big5)*preList[i].prob;
+        if(probtmp>big5tmp.prob){
+            big5tmp.prob=probtmp;
+            big5tmp.preId=i;
+        }
+    }
+}
+string _s(string str){
+    for(int i=str.size()-1; i >= 0; i-- )
+    {
+        if(str[i]==' '&&str[i]==str[i-1])
+            str.erase( str.begin() + i );
+    }
+    if (str[0]==' ')
+        str.erase(str.begin());
+    if (str[str.length()-1]==' ')
+        str.erase(str.end()-1);
+    return str;
+}
+int main(int argc, char *argv[]){
+    //FILE *testfp = fopen(argv[2], "r");
+    ifstream testfp(argv[2]);
+	//FILE *mapfp = fopen(argv[4],"r");
+    ifstream mapfp(argv[4]);
+    //ifstream mapfp("ZhuYin-Big5.map");
+
+	//Vocab voc;
+    //Ngram lm( voc, atoi(argv[8]) );
+	File lmFile( argv[6], "r" );
+	lm.read(lmFile);
+	lmFile.close();
+
+    vector<zhuyinNode> zhuyin2big5(37);
+    string buf;
+    Big5 big5tmp;
+    while(getline(mapfp,buf)){
+		if ( buf[0] == -93 ){
+			int pos = (buf[1] >= 116 && buf[1] <= 126)? buf[1]-116: buf[1]+106;
+            for (int i=3;i<buf.length();i+=3){
+                //big5tmp = (Big5 *) malloc(sizeof(Big5));
+                big5tmp.prob=-1;
+                big5tmp.preId=-1;
+                big5tmp.big5[0]=buf[i];
+                big5tmp.big5[1]=buf[i+1];
+                big5tmp.big5[2]='\0';
+                zhuyin2big5[pos].big5List.push_back(big5tmp);
+                //cout << string(zhuyin2big5[pos].big5List.back().big5) << endl;
+            }
+
+            //for(int i=0; i<zhuyin2big5[pos].big5List.size(); i++) 
+            //    cout << string(zhuyin2big5[pos].big5List[i].big5) ;
+            //cout<< endl;
+        }
+    }
+    vector<strNode> strList;
+    strNode strtmp;
+    while(getline(testfp,buf)){
+        buf=_s(buf);
+        strList.clear();
+        for (int i=0;i<buf.length();i+=3){
+            if(buf[i]!=-93){ 
+                strtmp.id=-1;
+                strtmp.big5List.clear();
+                big5tmp.prob=-1;
+                big5tmp.preId=-1;
+                big5tmp.big5[0]=buf[i];
+                big5tmp.big5[1]=buf[i+1];
+                big5tmp.big5[2]='\0';
+                strtmp.big5List.push_back(big5tmp);
+                strList.push_back(strtmp);
+            }
+            else{
+                int pos = (buf[i+1] >= 116 && buf[i+1] <= 126)? buf[i+1]-116: buf[i+1]+106;
+                strtmp.id=-1;
+                strtmp.big5List.clear();
+                strtmp.big5List=zhuyin2big5[pos].big5List;
+                strList.push_back(strtmp);
+            }
+            //for(int j=0; j<strList.back().big5List.size(); j++) 
+            //    cout << string(strList.back().big5List[j].big5);
+            //cout << endl;
+
+        }
+        for (int j=0;j<strList[0].big5List.size();j++){
+                strList[0].big5List[j].prob=_Prob(strList[0].big5List[j].big5, NULL);
+                cout<<strList[0].big5List[j].prob<<endl;
+        }
+        for (int i=1;i<strList.size();i++){            
+            for (int j=0;j<strList[i].big5List.size();j++)
+                strList[i].big5List[j]=maxProb(strList[i-1].big5List,strList[i].big5List[j]);
+        }
+        
+        double maxP=-1;
+        for(int j=0;j<strList.back().big5List.size();j++){
+            if(strList.back().big5List[j].prob>maxP){
+                maxP=strList.back().big5List[j].prob;
+                strList.back().id=j;
+            }
+        }
+        string output=" </s>";
+        for (int i=strList.size()-1;i>0;i--){
+            output=" "+string(strList[i].big5List[strList[i].id].big5)+output;
+            strList[i-1].id=strList[i].big5List[strList[i].id].preId;
+        }
+        output="<s>"+output;
+        cout<<output<<endl;
+    }
+    return 0;
+}

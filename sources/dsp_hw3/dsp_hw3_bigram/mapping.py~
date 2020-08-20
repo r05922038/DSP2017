@@ -1,0 +1,50 @@
+
+# coding: utf-8
+
+# In[1]:
+
+import re
+import io
+import sys
+import codecs
+
+# In[80]:
+
+f1=sys.argv[1]
+f2=sys.argv[2]
+
+
+# In[35]:
+
+zy_big5=dict()
+with codecs.open(f1,'r') as f:
+    for line in f:
+        line= line.split()
+        big5=line[0]
+        tokens=line[1].decode('big5').split('/')
+        #tokens=re.split("/| ",s)
+        zys=set([x[0] for x in tokens])
+        for zy in zys:
+            zy=zy.encode('big5')
+            if zy in zy_big5:
+                zy_big5[zy].add(big5)
+            else:
+                zy_big5[zy]=set([big5])
+
+
+# In[36]:
+
+big5set=set([])
+with codecs.open(f2,'w',encoding='ascii') as f:
+    for zy in zy_big5:
+        f.write(zy+' '+' '.join(zy_big5[zy])+'\n')
+        for big5 in zy_big5[zy]:
+            if big5 not in big5set:
+                f.write(big5+' '+big5+'\n')
+                big5set.add(big5)
+
+
+# In[ ]:
+
+
+

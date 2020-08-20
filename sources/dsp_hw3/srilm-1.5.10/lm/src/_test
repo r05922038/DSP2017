@@ -1,0 +1,338 @@
+./HMMofNgrams.h:32:    HMMState() : ngram(0), ngramName(0) {};
+./HMMofNgrams.h:33:    ~HMMState() { delete ngram; if (ngramName) free(ngramName); };
+./HMMofNgrams.h:36:    Ngram *ngram;
+./DFNgram.h:23: * ngram model, identified by special tokens.
+./NgramStats.h:43:     * Individual word/ngram lookup and insertion
+./NgramStats.h:86:					/* read one ngram count from file */
+./NgramStats.h:89:					/* write ngram count to file */
+./nbest-optimize.cc:2456:	    file.position() << "inconsistent bleu ngram length : " << line 
+./testHash.cc:38:	cerr << "usage: testHash numBits ngram-file\n";
+./DynamicLM.h:7: * (Currently only ngram models are supported.)
+./segment-nbest.cc:75:    { OPT_UINT, "order", &order, "ngram order to use for lm" },
+./ngram-class.cc:2: * ngram-class --
+./ngram-class.cc:3: *	Induce class ngram models from counts
+./ngram-class.cc:9:static char RcsId[] = "@(#)$Id: ngram-class.cc,v 1.29 2009/09/24 21:55:52 stolcke Exp $";
+./ngram-class.cc:115:    void writeCounts(File &file)	// write class ngram counts
+./ngram-class.cc:185:    VocabIndex ngram[3];
+./ngram-class.cc:195:    NgramsIter iter1(counts, ngram, 1);
+./ngram-class.cc:201:	if (noclassVocab.getWord(ngram[0]) != 0) {
+./ngram-class.cc:205:	    classUnigram[0] = ngram[0];
+./ngram-class.cc:211:	    VocabIndex *class1 = wordToClass.insert(ngram[0], found);
+./ngram-class.cc:217:			   << " for word " << vocab.getWord(ngram[0])
+./ngram-class.cc:228:	*wordCounts.insert(ngram[0]) += *count;
+./ngram-class.cc:234:    NgramsIter iter2(counts, ngram, 2);
+./ngram-class.cc:239:	if (noclassVocab.getWord(ngram[0]) != 0) {
+./ngram-class.cc:240:	    classBigram[0] = ngram[0];
+./ngram-class.cc:242:	    VocabIndex *class1 = wordToClass.find(ngram[0]);
+./ngram-class.cc:244:		cerr << "word 1 in bigram \"" << (vocab.use(), ngram)
+./ngram-class.cc:251:	if (noclassVocab.getWord(ngram[1]) != 0) {
+./ngram-class.cc:252:	    classBigram[1] = ngram[1];
+./ngram-class.cc:254:	    VocabIndex *class2 = wordToClass.find(ngram[1]);
+./ngram-class.cc:256:		cerr << "word 2 in bigram \"" << (vocab.use(), ngram)
+./ClassNgram.cc:625:     * First read the ngram data in standard format
+./ClassNgram.cc:762: * Compile class-ngram into word-ngram model by expanding classes
+./ClassNgram.cc:765: * 2 - Compute conditional word-ngram probabilities from joint probs.
+./ClassNgram.cc:776:					// accumulators for joint ngram probs
+./ClassNgram.cc:778:    unsigned maxNgramLength = 0;	// to determine final ngram order
+./ClassNgram.cc:799:	     * Flip context to give regular ngram order and allow appending
+./ClassNgram.cc:816:		 * Expand the full ngram.
+./ClassNgram.cc:892:	     * destructively extract context portion of ngram
+./ClassNgram.cc:898:		 * ngram is not in old model:
+./ClassNgram.cc:899:		 * compute joint probability for this ngram, excluding classes
+./ClassNgram.cc:966:     * Create new ngram model (inherit debug level from class ngram)
+./ClassNgram.cc:968:    Ngram *ngram = new Ngram(*newVocab, newOrder);
+./ClassNgram.cc:969:    assert(ngram != 0);
+./ClassNgram.cc:970:    ngram->debugme(debuglevel());
+./ClassNgram.cc:998:	     * reverse context words in preparation for ngram prob insertion
+./ClassNgram.cc:1004:		 * Exact conditional probability for expanded ngram:
+./ClassNgram.cc:1025:		    *ngram->insertProb(word[0], wordNgram) = lprob;
+./ClassNgram.cc:1029:		 * Compute sum of all ngram probs
+./ClassNgram.cc:1038:		 * Compute the sum of ngram probs
+./ClassNgram.cc:1050:			     << "\" lower than total ngram prob for words "
+./ClassNgram.cc:1073:		    *ngram->insertProb(word[0], wordNgram) = lprob;
+./ClassNgram.cc:1084:    ngram->recomputeBOWs();
+./ClassNgram.cc:1086:    return ngram;
+./ClassNgram.cc:1093:ClassNgramExpandIter::ClassNgramExpandIter(ClassNgram &ngram,
+./ClassNgram.cc:1095:    : ngram(ngram), classes(classes), buffer(buffer),
+./ClassNgram.cc:1105:	if (ngram.classVocab.getWord(classes[firstClassPos]) != 0) {
+./ClassNgram.cc:1115:				    (ngram.classDefs, classes[firstClassPos]);
+./ClassNgram.cc:1188:		    subIter = new ClassNgramExpandIter(ngram,
+./hidden-ngram.cc:2: * hidden-ngram --
+./hidden-ngram.cc:10:static char RcsId[] = "@(#)$Id: hidden-ngram.cc,v 1.55 2008/12/04 17:24:12 stolcke Exp $";
+./hidden-ngram.cc:137:    { OPT_UINT, "order", &order, "ngram order to use for lm" },
+./hidden-ngram.cc:1011:	 * create class-ngram if -classes were specified, otherwise a regular
+./hidden-ngram.cc:1012:	 * ngram
+./Dependencies.i686-m64:435:../obj/i686-m64$(OBJ_OPTION)/ngram.o: ngram.cc ../../include/option.h ../../include/cfuncproto.h \
+./Dependencies.i686-m64:456:../obj/i686-m64$(OBJ_OPTION)/ngram-count.o: ngram-count.cc ../../include/option.h \
+./Dependencies.i686-m64:466:../obj/i686-m64$(OBJ_OPTION)/ngram-merge.o: ngram-merge.cc ../../include/option.h \
+./Dependencies.i686-m64:476:../obj/i686-m64$(OBJ_OPTION)/ngram-class.o: ngram-class.cc ../../include/option.h \
+./Dependencies.i686-m64:503:../obj/i686-m64$(OBJ_OPTION)/anti-ngram.o: anti-ngram.cc ../../include/option.h \
+./Dependencies.i686-m64:575:../obj/i686-m64$(OBJ_OPTION)/hidden-ngram.o: hidden-ngram.cc ../../include/option.h \
+./Dependencies.i686-m64:592:../obj/i686-m64$(OBJ_OPTION)/multi-ngram.o: multi-ngram.cc ../../include/option.h \
+./Dependencies.i686-m64:631:../bin/i686-m64$(BIN_OPTION)/ngram: ../obj/i686-m64$(OBJ_OPTION)/ngram.o
+./Dependencies.i686-m64:632:ngram: ../bin/i686-m64$(BIN_OPTION)/ngram
+./Dependencies.i686-m64:633:../bin/i686-m64$(BIN_OPTION)/ngram-count: ../obj/i686-m64$(OBJ_OPTION)/ngram-count.o
+./Dependencies.i686-m64:634:ngram-count: ../bin/i686-m64$(BIN_OPTION)/ngram-count
+./Dependencies.i686-m64:635:../bin/i686-m64$(BIN_OPTION)/ngram-merge: ../obj/i686-m64$(OBJ_OPTION)/ngram-merge.o
+./Dependencies.i686-m64:636:ngram-merge: ../bin/i686-m64$(BIN_OPTION)/ngram-merge
+./Dependencies.i686-m64:637:../bin/i686-m64$(BIN_OPTION)/ngram-class: ../obj/i686-m64$(OBJ_OPTION)/ngram-class.o
+./Dependencies.i686-m64:638:ngram-class: ../bin/i686-m64$(BIN_OPTION)/ngram-class
+./Dependencies.i686-m64:641:../bin/i686-m64$(BIN_OPTION)/anti-ngram: ../obj/i686-m64$(OBJ_OPTION)/anti-ngram.o
+./Dependencies.i686-m64:642:anti-ngram: ../bin/i686-m64$(BIN_OPTION)/anti-ngram
+./Dependencies.i686-m64:655:../bin/i686-m64$(BIN_OPTION)/hidden-ngram: ../obj/i686-m64$(OBJ_OPTION)/hidden-ngram.o
+./Dependencies.i686-m64:656:hidden-ngram: ../bin/i686-m64$(BIN_OPTION)/hidden-ngram
+./Dependencies.i686-m64:657:../bin/i686-m64$(BIN_OPTION)/multi-ngram: ../obj/i686-m64$(OBJ_OPTION)/multi-ngram.o
+./Dependencies.i686-m64:658:multi-ngram: ../bin/i686-m64$(BIN_OPTION)/multi-ngram
+./ngram-count.cc:2: * ngram-count --
+./ngram-count.cc:3: *	Create and manipulate word ngram counts
+./ngram-count.cc:9:static char RcsId[] = "@(#)$Id: ngram-count.cc,v 1.69 2009/06/11 05:08:30 stolcke Exp $";
+./ngram-count.cc:54:static unsigned writeOrder = 0;		/* default is all ngram orders */
+./ngram-count.cc:108:    { OPT_UINT, "order", &order, "max ngram order" },
+./ngram-count.cc:113:    { OPT_UINT, "write-order", &writeOrder, "output ngram counts order" },
+./ngram-count.cc:355:     * The skip-ngram model requires count order one higher than
+./ngram-count.cc:698:	 * Backoff ngram LM estimation:
+./LM.cc:428:    makeArray(VocabIndex, ngram, countorder + 1);
+./LM.cc:443:	NgramCountsIter<CountT> ngramIter(counts, ngram, i,
+./LM.cc:464:	     * reverse ngram for lookup
+./LM.cc:466:	    Vocab::reverse(ngram);
+./LM.cc:473:		dout() << "\tp( " << vocab.getWord(ngram[0]) << " | "
+./LM.cc:474:		       << (vocab.use(), &ngram[1])
+./LM.cc:477:	    LogP prob = wordProb(ngram[0], &ngram[1]);
+./LM.cc:480:					contextProb(ngram, countorder);
+./LM.cc:487:		 * Include ngram count if not unity, so we can compute the
+./LM.cc:496:		    Prob probSum = wordProbSum(&ngram[1]);
+./LM.cc:501:			     << (vocab.use(), &ngram[1]) << endl;
+./LM.cc:512:	    if (ngram[0] == vocab.seIndex()) {
+./LM.cc:529:		if (ngram[0] == vocab.unkIndex()) {
+./LM.cc:541:	    Vocab::reverse(ngram);
+./LM.cc:583: *	output will be p(w,h) log p(pw|h) for each ngram, and the overall 
+./LM.cc:655:	 * Skip this entry if the length of the ngram exceeds our 
+./Ngram.h:53:    unsigned setorder(unsigned neworder = 0);   /* change/return ngram order */
+./Ngram.h:74:				/* use lower-order counts for ngram totals */
+./Ngram.h:112:    unsigned int order; 			/* maximal ngram order */
+./NgramCountLM.h:49:     * Propagate changes to Debug state to ngram counts
+./NgramCountLM.h:68:    unsigned order;			/* max ngram length */
+./NgramCountLM.h:76:    NgramStats ngramCounts;		/* ngram count trie */
+./Discount.cc:151: * Estimation of discount coefficients from ngram count-of-counts
+./Discount.cc:412:    makeArray(VocabIndex, ngram, order + 2);
+./Discount.cc:420:	NgramCountsIter<NgramCount> iter(counts, ngram, order);
+./Discount.cc:424:	    if (!counts.vocab.isNonEvent(ngram[0])) {
+./Discount.cc:434:	NgramCountsIter<NgramCount> iter(counts, ngram, order + 1);
+./Discount.cc:438:	    if (*count > 0 && !counts.vocab.isNonEvent(ngram[1])) {
+./Discount.cc:439:		NgramCount *loCount = counts.findCount(&ngram[1]);
+./multi-ngram.cc:2: * multi-ngram --
+./multi-ngram.cc:9:static char RcsId[] = "@(#)$Id: multi-ngram.cc,v 1.11 2006/08/12 06:46:11 stolcke Exp $";
+./multi-ngram.cc:47:    { OPT_UINT, "order", &order, "max ngram order" },
+./multi-ngram.cc:48:    { OPT_UINT, "multi-order", &multiOrder, "max multiword ngram order" },
+./multi-ngram.cc:51:    { OPT_STRING, "lm", &lmFile, "ngram LM to model" },
+./multi-ngram.cc:52:    { OPT_STRING, "multi-lm", &multiLMfile, "multiword ngram LM" },
+./multi-ngram.cc:53:    { OPT_STRING, "write-lm", &writeLM, "multiword ngram output file" },
+./multi-ngram.cc:136: * Check a multiword ngram for whether its component ngrams are all 
+./multi-ngram.cc:154:     * Expand the reversed ngram with all multiwords
+./multi-ngram.cc:188: * Populate multi-ngram LM with a superset of original ngrams.
+./multi-ngram.cc:197:     * don't exceed the multi-ngram order
+./multi-ngram.cc:233:     * Populate multi-ngram LM
+./multi-ngram.cc:242:	     * copy BOW to multi ngram
+./multi-ngram.cc:247:	     * copy probs to multi ngram
+./HiddenNgram.h:22: * The DP trellis to evaluate a hidden ngram contains the N-gram context,
+./disambig.cc:3: *	Disambiguate text tokens using a hidden ngram model
+./disambig.cc:128:    { OPT_UINT, "order", &order, "ngram order to use for lm" },
+./NgramCountLM.cc:116: * Helper function to fill the ngram buffer with left-to-right ngram
+./NgramCountLM.cc:117: * Returns start of valid ngram (pointer into ngramBuffer)
+./NgramCountLM.cc:336:    VocabIndex *ngram = setupNgram(word, context);
+./NgramCountLM.cc:337:    unsigned nlen = Vocab::length(ngram);
+./NgramCountLM.cc:346:        VocabIndex *useNgram = &ngram[nlen - i];
+./NgramCountLM.cc:348:	ngram[nlen - 1] = Vocab_None;
+./NgramCountLM.cc:351:	ngram[nlen - 1] = word;
+./NgramCountLM.cc:369:	    cerr << "warning: zero denominator count for ngram "
+./NgramCountLM.cc:391:    VocabIndex *ngram = setupNgram(Vocab_None, context);
+./NgramCountLM.cc:396:    for (unsigned i = 0; ngram[i] != Vocab_None; i ++) {
+./NgramCountLM.cc:397:	NgramCount *cnt = ngramCounts.findCount(&ngram[i]);
+./NgramCountLM.cc:400:	    length = Vocab::length(&ngram[i]);
+./NgramCountLM.cc:504:    VocabIndex *ngram = setupNgram(word, context);
+./NgramCountLM.cc:505:    unsigned nlen = Vocab::length(ngram);
+./NgramCountLM.cc:512:    if (nlen != order && !(nlen > 1 && ngram[0] == vocab.ssIndex())) {
+./NgramCountLM.cc:520:    						 * the higher-order ngram
+./NgramCountLM.cc:528:        VocabIndex *useNgram = &ngram[nlen - i];
+./NgramCountLM.cc:530:	ngram[nlen - 1] = Vocab_None;
+./NgramCountLM.cc:533:	ngram[nlen - 1] = word;
+./NgramCountLM.cc:547:	    cerr << "warning: zero denominator count for ngram "
+./Makefile:205:	ngram \
+./Makefile:206:	ngram-count \
+./Makefile:207:	ngram-merge \
+./Makefile:208:	ngram-class \
+./Makefile:210:	anti-ngram \
+./Makefile:217:	hidden-ngram \
+./Makefile:218:	multi-ngram
+./ClassNgram.h:23: * The DP trellis to evaluate a class ngram contains the N-gram context
+./ClassNgram.h:74:     * Compile class-ngram into word-ngram
+./ClassNgram.h:110:    ClassNgramExpandIter(ClassNgram &ngram, const VocabIndex *classes,
+./ClassNgram.h:119:    ClassNgram &ngram;				/* model defining classes */
+./HMMofNgrams.cc:79:	if (state->ngram) {
+./HMMofNgrams.cc:80:	    state->ngram->debugme(level);
+./HMMofNgrams.cc:95:	if (state->ngram) {
+./HMMofNgrams.cc:96:	    state->ngram->dout(stream);
+./HMMofNgrams.cc:168:		file.position() << "ngram not allowed on initial/final state\n";
+./HMMofNgrams.cc:184:		    dout() << "reusing state ngram " << state->ngramName
+./HMMofNgrams.cc:192:		delete state->ngram;
+./HMMofNgrams.cc:193:		state->ngram = new Ngram(vocab, order);
+./HMMofNgrams.cc:194:		assert(state->ngram != 0);
+./HMMofNgrams.cc:196:		state->ngram->debugme(debuglevel());
+./HMMofNgrams.cc:200:		    status = state->ngram->read(file, limitVocab);
+./HMMofNgrams.cc:211:		    status = state->ngram->read(ngramFile, limitVocab);
+./HMMofNgrams.cc:232:	    !state->ngram)
+./HMMofNgrams.cc:254:	fprintf(file, "%s %s", stateName, (state->ngram ? INLINE_LM : NO_LM));
+./HMMofNgrams.cc:270:	if (state->ngram) {
+./HMMofNgrams.cc:274:		status = state->ngram->writeBinary(file);
+./HMMofNgrams.cc:276:		status = state->ngram->write(file);
+./HMMofNgrams.cc:431:	    if (currWord != vocab.seIndex() && prevState->ngram) {
+./HMMofNgrams.cc:433:			prevState->ngram->wordProb(currWord, currContext);
+./HMMofNgrams.cc:499:			wProb = toState->ngram->wordProb(currWord, currContext)
+./HMMofNgrams.cc:501:				    toState->ngram->wordProb(vocab.seIndex(),
+./HMMofNgrams.cc:507:		    eosProb = prevState->ngram ? 
+./HMMofNgrams.cc:508:			prevState->ngram->wordProb(vocab.seIndex(), currContext) :
+./NgramLM.cc:245:     * Remove a ngram probabilities
+./NgramLM.cc:327: * the context trie only once, finding the maximal ngram and accumulating 
+./NgramLM.cc:493:	case 0:		/* ngram header */
+./NgramLM.cc:502:		    file.position() << "invalid ngram order " << state << "\n";
+./NgramLM.cc:513:	    } else if (sscanf(line, "ngram %d=%d", &thisOrder, &nNgrams) == 2) {
+./NgramLM.cc:516:		 *	ngram <N>=<howmany>
+./NgramLM.cc:520:		    file.position() << "ngram order " << thisOrder
+./NgramLM.cc:525:		    file.position() << "ngram number " << nNgrams
+./NgramLM.cc:553:		    file.position() << "invalid ngram order " << state << "\n";
+./NgramLM.cc:593:				/* ngram translated to word indices */
+./NgramLM.cc:603:		    file.position() << "ngram line has " << howmany
+./NgramLM.cc:641:					    << "\" for maximal ngram\n";
+./NgramLM.cc:646:			 * never be used as a result of higher-order ngram
+./NgramLM.cc:670:		 * reverse the ngram since that's how we'll need it
+./NgramLM.cc:681:			/* skip rest of processing and go to next ngram */
+./NgramLM.cc:703:		    file.position() << "warning: no bow for prefix of ngram \""
+./NgramLM.cc:722:		 * Hey, we're done with this ngram!
+./NgramLM.cc:761:	fprintf(file, "ngram %d=%d\n", i, howmanyNgrams[i]);
+./NgramLM.cc:1121:    	file.position() << "could not read ngram order\n";
+./NgramLM.cc:1623:	     * with the count from the context ngram.
+./NgramLM.cc:1683:	     * reverse the context ngram since that's how
+./NgramLM.cc:1703:		 * if a higher order ngram has a non-zero count.
+./NgramLM.cc:1792:		 * A discount coefficient of zero indicates this ngram
+./NgramLM.cc:1911:	 * First, find all explicit ngram probs in *this, and mix them
+./NgramLM.cc:1960:	 * First, find all explicit ngram probs in lm1, and mix them
+./NgramLM.cc:2115:	     * but some ngram software requires all words to appear as
+./NgramLM.cc:2208:		 * Compute BOW after removing ngram, BOW'(h)
+./NgramLM.cc:2215:		 * Compute change in entropy due to removal of ngram
+./NgramLM.cc:2246:		     * NgramBOIter. Just add the word to complete the ngram.
+./NgramLM.cc:2370: * Reassign ngram probabilities using a different LM
+./NgramLM.cc:2382:	 * Enumerate all explicit ngram probs in *this, and recompute their
+./NgramLM.cc:2403: * 	for every context ngram.  So we create one if necessary and
+./ngram.cc:2: * ngram --
+./ngram.cc:3: *	Create and manipulate ngram (and related) models
+./ngram.cc:8:static char RcsId[] = "@(#)$Id: ngram.cc,v 1.109 2009/09/30 04:57:28 stolcke Exp $";
+./ngram.cc:185:    { OPT_UINT, "order", &order, "max ngram order" },
+./ngram.cc:188:    { OPT_TRUE, "df", &df, "use disfluency ngram model" },
+./ngram.cc:191:    { OPT_TRUE, "skip", &skipNgram, "use skip ngram model" },
+./ngram.cc:192:    { OPT_TRUE, "hiddens", &hiddenS, "use hidden sentence ngram model" },
+./ngram.cc:193:    { OPT_STRING, "hidden-vocab", &hiddenVocabFile, "hidden ngram vocabulary" },
+./ngram.cc:262:    { OPT_STRING, "rescore-ngram", &rescoreNgramFile, "recompute probs in N-gram LM" },
+./ngram.cc:284:    { OPT_UINT, "decipher-order", &decipherOrder, "ngram order for -decipher-lm" },
+./ngram.cc:366:	 * class-ngram if -classes were specified,
+./ngram.cc:367:	 * and otherwise a regular ngram
+./ngram.cc:443:	 * class-ngram if -classes were specified,
+./ngram.cc:444:	 * and otherwise a regular ngram
+./ngram.cc:686:		 * perform static interpolation (ngram merging)
+./ngram.cc:766:		 * Replace class ngram with equivalent word ngram
+./TaggedNgram.cc:27: * The tagged ngram LM uses the following backoff hierarchy:
+./TaggedNgram.cc:41:     * Extract the word ngram from the context
+./TaggedNgram.cc:58:	 * Backoff weight from word to tag-ngram
+./TaggedNgram.cc:78:	     * No tag-ngram, so back off to shorter context.
+./TaggedNgram.cc:169:		 * but some ngram software requires all words to appear as
+./SkipNgram.h:45:    LogP estimateEstepNgram(VocabIndex *ngram, NgramCount ngramCount,
+./NgramStats.cc:233:     * Read next ngram count from file, skipping blank lines
+./NgramStats.cc:277:	 * Skip this entry if the length of the ngram exceeds our 
+./NgramStats.cc:288:	     * skip ngram if not in-vocabulary
+./NgramStats.cc:345:    	file.position() << "could not read ngram order\n";
+./NgramStats.cc:621: * the ngram tree
+./NgramStats.cc:644: * Assumes that counts are merged, i.e., ngram order is generated by a
+./NgramStats.cc:645: * pre-order traversal of the ngram tree.
+./NgramStats.cc:695:	 * Skip this entry if the length of the ngram exceeds our 
+./NgramStats.cc:728:	     * skip ngram if not in-vocabulary
+./NgramStats.cc:746:	 * If current ngram prefix differs from previous one assume that 
+./NgramStats.cc:856:	   cerr << "ngram ["<< buffer << word
+./NgramStats.cc:864:	 * If this is the final level, print out the ngram and the count.
+./NgramStats.cc:1055: * Prune ngram counts
+./NgramStats.cc:1062:    makeArray(VocabIndex, ngram, order + 1);
+./NgramStats.cc:1066:	NgramCountsIter<CountT> countIter(*this, ngram, i);
+./NgramStats.cc:1073:		removeCount(ngram);
+./NgramStats.cc:1082: * Set ngram counts to constant value (default zero)
+./NgramStats.cc:1088:    makeArray(VocabIndex, ngram, order + 1);
+./NgramStats.cc:1092:	NgramCountsIter<CountT> countIter(*this, ngram, i);
+./VarNgram.cc:35: * pruneNgram() is consulted to determine when to exclude an ngram from
+./VarNgram.cc:103:	     * with the count from the context ngram.
+./VarNgram.cc:123:	     * reverse the context ngram since that's how
+./VarNgram.cc:171:		     * ngram with its backed-off estimate.
+./VarNgram.cc:192:		 * A discount coefficient of zero indicates this ngram
+./VarNgram.cc:244: * Decide if a the ngram consisting of the context (in reverse order)
+./VarNgram.cc:245: * and the word should be omitted from the ngram model
+./VarNgram.cc:295:		dout() << "pruning ngram \"" 
+./anti-ngram.cc:2: * anti-ngram --
+./anti-ngram.cc:8:static char RcsId[] = "@(#)$Id: anti-ngram.cc,v 1.18 2008/04/24 19:34:03 stolcke Exp $";
+./anti-ngram.cc:64:    { OPT_UINT, "order", &order, "max ngram order" },
+./anti-ngram.cc:84: * Add ngram counts
+./anti-ngram.cc:90:    makeArray(VocabIndex, ngram, order + 1);
+./anti-ngram.cc:94:	NgramCountsIter<DiscNgramCount> countIter(add, ngram, i);
+./anti-ngram.cc:100:	    if (!exclude.findCount(ngram)) {
+./anti-ngram.cc:101:		*stats.insertCount(ngram) += *count;
+./anti-ngram.cc:139: *	- update ngram counts
+./anti-ngram.cc:182:     * Add hyp ngram counts to overall stats, excluding the ref ngrams.
+./anti-ngram.cc:232:    Ngram *ngram = 0;
+./anti-ngram.cc:239:	 * create class-ngram if -classes were specified, otherwise a regular
+./anti-ngram.cc:240:	 * ngram
+./anti-ngram.cc:242:	Ngram *ngram = (classVocab != 0) ?
+./anti-ngram.cc:245:	assert(ngram != 0);
+./anti-ngram.cc:247:	ngram->debugme(debug);
+./anti-ngram.cc:248:	ngram->read(file);
+./anti-ngram.cc:255:	    ((ClassNgram *)ngram)->readClasses(file);
+./anti-ngram.cc:294:	    countNBestList(*nbest, ref, ngram, trainStats);
+./AdaptiveMix.cc:42: *		mixture-weight-1	ngram-file-1	ngram-order-1
+./AdaptiveMix.cc:43: *		mixture-weight-2	ngram-file-2	ngram-order-2
+./AdaptiveMix.cc:84:	    file.position() << "error reading ngram\n";
+./NBest.cc:250: * Two ngram keys are different if
+./NBest.cc:295: * Two ngram keys are sorted
+./SkipNgram.cc:94:     * First read the ngram data in standard format
+./SkipNgram.cc:190:	//cerr << "ngram stats:\n";
+./SkipNgram.cc:215:SkipNgram::estimateEstepNgram(VocabIndex *ngram, NgramCount ngramCount,
+./SkipNgram.cc:220:    unsigned ngramLength = Vocab::length(ngram);
+./SkipNgram.cc:223:    VocabIndex word = ngram[ngramLength - 1];
+./SkipNgram.cc:224:    VocabIndex skipped = ngram[ngramLength - 2];
+./SkipNgram.cc:226:    //cerr << "doing ngram " << (vocab.use(), ngram) << endl;
+./SkipNgram.cc:232:     * temporarily reverse ngram for wordProb call
+./SkipNgram.cc:234:    Vocab::reverse(ngram);
+./SkipNgram.cc:236:    LogP l1 = Ngram::wordProbBO(ngram[0], &ngram[2], ngramLength - 2);
+./SkipNgram.cc:237:    LogP l2 = Ngram::wordProbBO(ngram[0], &ngram[1], ngramLength - 2);
+./SkipNgram.cc:252:    Vocab::reverse(ngram);
+./SkipNgram.cc:261:    ngram[ngramLength - 2] = Vocab_None;
+./SkipNgram.cc:268:	if (stats.findCount(&ngram[i], word)) {
+./SkipNgram.cc:269:	    //cerr << " incrementing " << (vocab.use(), &ngram[i])
+./SkipNgram.cc:271:	    *ngramExps.insertCount(&ngram[i], word) += skipPr *ngramCount;
+./SkipNgram.cc:274:    ngram[ngramLength - 2] = skipped;
+./SkipNgram.cc:283:	//cerr << " incrementing " << (vocab.use(), &ngram[i]) << endl;
+./SkipNgram.cc:284:	*ngramExps.insertCount(&ngram[i]) += (1.0 - skipPr) * ngramCount;
+./SkipNgram.cc:301:    makeArray(VocabIndex, ngram, order + 2);
+./SkipNgram.cc:307:    NgramsIter ngramIter(stats, ngram, order + 1);
+./SkipNgram.cc:311:	totalLikelihood += estimateEstepNgram(ngram, *ngramCount,
+./SkipNgram.cc:322:    ngram[0] = vocab.ssIndex();
+./SkipNgram.cc:325:	NgramsIter ngramIter(stats, start, &ngram[1], j - 1);
+./SkipNgram.cc:328:	    totalLikelihood += estimateEstepNgram(ngram, *ngramCount,
+./StopNgramStats.cc:48:	 * Count an ngram that has the current word as the last item,
+./segment.cc:49:    { OPT_UINT, "order", &order, "ngram order to use for lm" },
+./ngram-merge.cc:2: * ngram-merge --
+./ngram-merge.cc:3: *	Merge sorted ngram counts
+./ngram-merge.cc:9:static char RcsId[] = "@(#)$Id: ngram-merge.cc,v 1.18 2008/12/21 17:33:36 stolcke Exp $";
+./ngram-merge.cc:53:    VocabString ngram[maxNgramOrder + 1];
+./ngram-merge.cc:73:			    perfile[i].ngram, maxNgramOrder + 1, 
+./ngram-merge.cc:76:			    perfile[i].ngram, maxNgramOrder + 1, 
+./ngram-merge.cc:110:	     * for next ngram.
+./ngram-merge.cc:112:	    minNgram = perfile[i].ngram;
+./ngram-merge.cc:116:	    int comp = Vocab::compare(minNgram, perfile[i].ngram);
+./ngram-merge.cc:120:		 * Another file that shares the minimal ngram
+./ngram-merge.cc:131:		 * A new minimal ngram.  Invalidate all the previous
+./ngram-merge.cc:134:	        minNgram = perfile[i].ngram;
+./DecipherNgram.cc:42: *   direct ngram probability.

@@ -1,0 +1,107 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <queue>
+using namespace std;
+struct charNode{
+	char word[10];
+};
+class strNode{
+	public:
+		int id;
+		vector<charNode> charList;
+};
+/*
+void _c(char *str)
+{
+	    char *dst = str;
+
+	        for (; *str; ++str) {
+			        *dst++ = *str;
+
+				        if (isspace(*str)) {
+						            do ++str; 
+
+							                while (isspace(*str));
+
+							                --str;
+							            }
+					    }
+
+		    *dst = 0;
+}*/
+//bool BothAreSpaces(char lhs, char rhs) { return (lhs == rhs) && (lhs == ' '); }
+
+int main (int argc, char const *argv[])
+{
+	ifstream fin1(argv[1]);
+	string in;
+	while (getline(fin1,in)){
+	//	cout << "in 長度: " << in.size() << endl;
+	//	cout << in <<endl;
+	}
+	string a = "\243~";
+	//cout << a << endl;
+
+	vector<strNode> strList;
+	strNode temp;
+	temp.id=5;
+	charNode c1;
+	c1.word[0]='a';
+	charNode c2;
+	c2.word[0]='b';
+	temp.charList.push_back(c1);
+	temp.charList.push_back(c2);
+	strList.push_back(temp);
+	cout<<strList[0].id<<endl;
+	cout<<strList[0].charList[1].word[0]<<endl;
+	vector<strNode> strList2=strList;
+	strList2[0].id=9;
+	strList2[0].charList[1].word[0]='c';
+	cout<<strList2[0].id<< " " << strList[0].id<<endl;
+	cout<<strList2[0].charList[1].word[0]<<strList[0].charList[1].word[0]<<endl;
+	cout << strList2.size()<<strList.size()<<endl;
+	strList.clear();
+	cout<<strList2.size()<<strList.size()<<endl;
+	string s1="a ";
+	s1="b "+s1;
+	cout<<s1<<endl;
+	char ch1[3];
+	ch1[0]='a';
+	ch1[1]='b';
+	ch1[2]='\0';
+	s1=string(ch1)+s1;
+	cout<<s1<<endl;
+	//bool BothAreSpaces(char lhs, char rhs) { return (lhs == rhs) && (lhs == ' '); }
+	string str="   a    c bd   ";
+	//std::string::iterator new_end = std::unique(str.begin(), str.end(), BothAreSpaces);
+	//str.erase(new_end, str.end()); 
+	for(int i=str.size()-1; i >= 0; i-- )
+		    {
+			            if(str[i]==' '&&str[i]==str[i-1]) //added equal sign
+					            {
+							                str.erase( str.begin() + i );
+									        }
+				        }
+	cout<<str<<str.length()<<endl;
+	str.erase(str.begin());
+	cout<<str<<str.length()<<endl;
+	str.erase(str.end()-1);
+	cout<<str<<str.length()<<endl;
+	cout<<"fkl"<<endl;
+	vector<double> test={5,8,6,1,9,4,2,13,3};
+	std::priority_queue<std::pair<double, int>> q;
+	  for (int i = 0; i < test.size(); ++i) {
+		      q.push(std::pair<double, int>(test[i], i));
+		        }
+	    int k = 3; // number of indices we need
+	      for (int i = 0; i < k; ++i) {
+		          //int ki = q.top().second;
+			      //std::cout << "index[" << i << "] = " << ki << std::endl;
+			          q.pop();
+				    }
+	      cout<<q.top().first<<endl;
+	return 0;
+}

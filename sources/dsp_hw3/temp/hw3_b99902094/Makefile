@@ -1,0 +1,45 @@
+SRIPATH = /home/student/99/b99902094/DSP/hw3/srilm-1.5.10
+MACHINE_TYPE = i686-m64
+
+CXX = g++
+CXXFLAGS = -O3 -I$(SRIPATH)/include
+vpath lib%.a $(SRIPATH)/lib/$(MACHINE_TYPE)
+
+TARGET= mydisambig
+SRC = mydisambig.cpp
+OBJ = $(SRC:.cpp=.o)
+
+.PHONY: all clean
+
+all: $(TARGET)
+
+$(TARGET): $(OBJ) -loolm -ldstruct -lmisc
+	    $(CXX) $(LDFLAGS) -o $@ $^
+
+%.o: %.cpp
+	    $(CXX) $(CXXFLAGS) -c $<
+run:
+	./disambig -text ../../../testdata/1_seg.txt -map ZhuYin-Big5.map -lm bigram.lm -order 2 > ../../../Submit_Files/result1/1.txt
+	./disambig -text ../../../testdata/2_seg.txt -map ZhuYin-Big5.map -lm bigram.lm -order 2 > ../../../Submit_Files/result1/2.txt
+	./disambig -text ../../../testdata/3_seg.txt -map ZhuYin-Big5.map -lm bigram.lm -order 2 > ../../../Submit_Files/result1/3.txt
+	./disambig -text ../../../testdata/4_seg.txt -map ZhuYin-Big5.map -lm bigram.lm -order 2 > ../../../Submit_Files/result1/4.txt
+	./disambig -text ../../../testdata/5_seg.txt -map ZhuYin-Big5.map -lm bigram.lm -order 2 > ../../../Submit_Files/result1/5.txt
+	./disambig -text ../../../testdata/6_seg.txt -map ZhuYin-Big5.map -lm bigram.lm -order 2 > ../../../Submit_Files/result1/6.txt
+	./disambig -text ../../../testdata/7_seg.txt -map ZhuYin-Big5.map -lm bigram.lm -order 2 > ../../../Submit_Files/result1/7.txt
+	./disambig -text ../../../testdata/8_seg.txt -map ZhuYin-Big5.map -lm bigram.lm -order 2 > ../../../Submit_Files/result1/8.txt
+	./disambig -text ../../../testdata/9_seg.txt -map ZhuYin-Big5.map -lm bigram.lm -order 2 > ../../../Submit_Files/result1/9.txt
+	./disambig -text ../../../testdata/10_seg.txt -map ZhuYin-Big5.map -lm bigram.lm -order 2 > ../../../Submit_Files/result1/10.txt
+myrun:
+	./mydisambig -text ../../../testdata/1_seg.txt -map ZhuYin-Big5.map > ../../../Submit_Files/result2/1.txt
+	./mydisambig -text ../../../testdata/2_seg.txt -map ZhuYin-Big5.map > ../../../Submit_Files/result2/2.txt
+	./mydisambig -text ../../../testdata/3_seg.txt -map ZhuYin-Big5.map > ../../../Submit_Files/result2/3.txt
+	./mydisambig -text ../../../testdata/4_seg.txt -map ZhuYin-Big5.map > ../../../Submit_Files/result2/4.txt
+	./mydisambig -text ../../../testdata/5_seg.txt -map ZhuYin-Big5.map > ../../../Submit_Files/result2/5.txt
+	./mydisambig -text ../../../testdata/6_seg.txt -map ZhuYin-Big5.map > ../../../Submit_Files/result2/6.txt
+	./mydisambig -text ../../../testdata/7_seg.txt -map ZhuYin-Big5.map > ../../../Submit_Files/result2/7.txt
+	./mydisambig -text ../../../testdata/8_seg.txt -map ZhuYin-Big5.map > ../../../Submit_Files/result2/8.txt
+	./mydisambig -text ../../../testdata/9_seg.txt -map ZhuYin-Big5.map > ../../../Submit_Files/result2/9.txt
+	./mydisambig -text ../../../testdata/10_seg.txt -map ZhuYin-Big5.map > ../../../Submit_Files/result2/10.txt
+
+clean:
+	    $(RM) $(OBJ) $(TARGET)
